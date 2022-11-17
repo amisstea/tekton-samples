@@ -7,21 +7,37 @@ spec:
     - name: task-success
       taskRef:
         name: test-output
-        bundle: quay.io/kpavic/test-bundle:test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
       params:
         - name: RESULT
           value: SUCCESS
+        - name: TEST_SUITE_NAME
+          value: test-suite-a
+        - name: SUCCESSES
+          value: "1"
     - name: task-success-2
       taskRef:
         name: test-output
-        bundle: quay.io/kpavic/test-bundle:test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
       params:
         - name: RESULT
           value: SUCCESS
+        - name: TEST_SUITE_NAME
+          value: test-suite-b
+        - name: SUCCESSES
+          value: "10"
     - name: task-skipped
       taskRef:
         name: test-output
-        bundle: quay.io/kpavic/test-bundle:test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
       params:
         - name: RESULT
           value: SKIPPED
+        - name: TEST_SUITE_NAME
+          value: test-suite-c
+        - name: NOTE
+          value: "Visit https://console.redhat.com for more info."
+    - name: task-no-results
+      taskRef:
+        name: test-no-output
+        bundle: quay.io/amisstea/test-bundle:test-no-output

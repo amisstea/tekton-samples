@@ -7,21 +7,80 @@ spec:
     - name: task-success
       taskRef:
         name: test-output
-        bundle: quay.io/kpavic/test-bundle:test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
       params:
         - name: RESULT
           value: SUCCESS
+        - name: TEST_SUITE_NAME
+          value: test-suite-a
+        - name: SUCCESSES
+          value: "1"
     - name: task-failure
       taskRef:
         name: test-output
-        bundle: quay.io/kpavic/test-bundle:test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
       params:
         - name: RESULT
           value: FAILURE
+        - name: TEST_SUITE_NAME
+          value: test-suite-b
+        - name: SUCCESSES
+          value: "5"
+        - name: FAILURES
+          value: "1"
+        - name: WARNINGS
+          value: "1"
+        - name: NOTE
+          value: "Visit https://console.redhat.com for more info and troubleshooting tips."
     - name: task-skipped
       taskRef:
         name: test-output
-        bundle: quay.io/kpavic/test-bundle:test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
       params:
         - name: RESULT
           value: SKIPPED
+        - name: TEST_SUITE_NAME
+          value: test-suite-c
+        - name: NOTE
+          value: Example of an intentional skip message.
+    - name: task-warning
+      taskRef:
+        name: test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
+      params:
+        - name: RESULT
+          value: WARNING
+        - name: TEST_SUITE_NAME
+          value: test-suite-d
+        - name: SUCCESSES
+          value: "10"
+        - name: WARNINGS
+          value: "1"
+    - name: task-no-results-1
+      taskRef:
+        name: test-no-output
+        bundle: quay.io/amisstea/test-bundle:test-no-output
+    - name: task-no-results-2
+      taskRef:
+        name: test-no-output
+        bundle: quay.io/amisstea/test-bundle:test-no-output
+    - name: task-error
+      taskRef:
+        name: test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
+      params:
+        - name: RESULT
+          value: ERROR
+        - name: TEST_SUITE_NAME
+          value: test-suite-d
+    - name: task-unknown
+      taskRef:
+        name: test-output
+        bundle: quay.io/amisstea/test-bundle:test-output
+      params:
+        - name: RESULT
+          value: UNKNOWN
+        - name: TEST_SUITE_NAME
+          value: test-suite-e
+        - name: SUCCESSES
+          value: "1"
